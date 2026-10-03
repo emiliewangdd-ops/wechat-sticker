@@ -17,7 +17,7 @@ skills/
     ├── references/
     └── scripts/
 scripts/
-└── export_wechat.py       # 静态/动态共用的最终投稿素材导出器
+└── export_wechat.py       # 旧静态导出命令的兼容副本，仅支持静态图片
 ```
 
 ## 来源与许可证
@@ -53,11 +53,21 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
   --url https://github.com/emiliewangdd-ops/wechat-sticker/tree/main/skills/wechat-dynamic-sticker
 ```
 
-安装静态 Skill 时，将 URL 中的路径替换为 `skills/wechat-static-sticker`。安装后新开任务，然后显式使用 `$wechat-dynamic-sticker` 或 `$wechat-static-sticker`；也可以直接描述需求，让 Agent 自动选择。
+安装静态 Skill（目录用于区分静态/动态，调用名恢复为原来的 `wechat-sticker`）：
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --url https://github.com/emiliewangdd-ops/wechat-sticker/tree/main/skills/wechat-static-sticker \
+  --name wechat-sticker
+```
+
+静态 Skill 的脚本、依赖清单、参考资料和许可证均包含在该目录内，可以单独安装；调用 `$wechat-sticker`。参见[静态使用说明](skills/wechat-static-sticker/README.md)，包括手动安装及已有安装的迁移说明。根目录原 `SKILL.md` 已迁移，安装来源应使用上述子目录。
+
+动态调用名仍为 `$wechat-dynamic-sticker`。动态包目前的导出链路仍待修复，不能使用上面的静态导出器处理 GIF；本次恢复仅针对静态 Skill。
 
 ## 与上游的关系
 
-上游的核心分切与打包脚本保留在 `scripts/` 中；微信规格、清单字段和导出校验属于本项目新增或适配内容。若继续修改上游代码，请同步检查其 MIT 版权声明，不要把上游代码或其示例素材误写成原创。
+上游的核心分切与打包脚本保留在 `skills/wechat-static-sticker/scripts/` 中；微信规格、清单字段和导出校验属于本项目新增或适配内容。若继续修改上游代码，请同步检查其 MIT 版权声明，不要把上游代码或其示例素材误写成原创。
 
 ## 免责声明
 

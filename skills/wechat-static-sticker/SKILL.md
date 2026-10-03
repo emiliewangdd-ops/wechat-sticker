@@ -1,5 +1,5 @@
 ---
-name: wechat-static-sticker
+name: wechat-sticker
 description: 制作或适配微信表情开放平台投稿素材，包括表情专辑、封面、聊天图标、横幅、艺术家资料及赞赏图，自动检查尺寸、体积和投稿文案。用户要求微信投稿、上架素材或微信规格时使用；普通表情创作可用原版 MemeSticker。
 ---
 
@@ -38,7 +38,7 @@ python3 <skill-root>/scripts/extract_sticker_sheet.py --input-image <sheet> --ou
 ## 导出
 读 `references/export-manifest.md`，写清单，使用：
 ```
-python3 <repo-root>/scripts/export_wechat.py --manifest <manifest.json> --output <new-output-dir>
+python3 <skill-root>/scripts/export_wechat.py --manifest <manifest.json> --output <new-output-dir>
 ```
 脚本检查8～24张专辑数量、唯一含义词（1～4个汉字）、文案长度及图片尺寸/格式/体积。输出目录必须是新的；失败不生成上传ZIP。只给赞赏图等局部素材时使用 mode=assets，不宣称整套已齐全。脚本不会凭空生成缺少的封面或横幅。
 

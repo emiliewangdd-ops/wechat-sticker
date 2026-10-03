@@ -78,11 +78,11 @@ def run(manifest,output):
   fmt='JPEG' if role in JPEG else 'PNG';data,method=encode(im,fmt,limit)
   fname=f'{role}/{i:02d}'+('.jpg' if fmt=='JPEG' else '.png')
   check=Image.open(io.BytesIO(data));assert check.size==(w,h) and len(data)<=limit
-  prepared.append((fname,data,{'file':fname,'role':role,'size':[w,h],'format':fmt,'bytes':len(data),'limit':limit,'encoding':method,'meaning':a.get('meaning',''),'limit_source':a.get('limit_source','references/wechat-specs.md')}))
+  prepared.append((fname,data,{'file':fname,'role':role,'size':[w,h],'format':fmt,'bytes':len(data),'limit':limit,'encoding':method,'meaning':a.get('meaning',''),'limit_source':a.get('limit_source','skills/wechat-static-sticker/references/wechat-specs.md')}))
  output.mkdir(parents=True)
  for fname,data,_ in prepared:
   p=output/fname;p.parent.mkdir(exist_ok=True);p.write_bytes(data)
- report={'status':'technical_checks_passed_not_platform_approved','mode':m.get('mode','album'),'files':[r for _,_,r in prepared],'visual_review':'required','rights_review':'not_automated','tip_specs':'user-supplied provisional targets'}
+  report={'status':'technical_checks_passed_not_platform_approved','mode':m.get('mode','album'),'files':[r for _,_,r in prepared],'visual_review':'required','rights_review':'not_automated','tip_specs':'user-supplied provisional targets'}
  (output/'checks.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
  # No source paths or reference photos enter the upload bundle.
  metadata={k:v for k,v in m.items() if k not in ('assets',)}
